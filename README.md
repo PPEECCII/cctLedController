@@ -1,6 +1,6 @@
 # cctLedController
 program to control an CCT(warm - cold) led strip
-This code is used to control a CCT led strip using one of the capacitive touch pins of the esp32 device.
+This code is used to control a CCT led strip using one of the capacitive touch pins (can be replaced with other button type if desired) of the esp32 device, planned to implement it in mirror lights.
 short pushes CYCLES between the modes: OFF - WARM LIGHT - WHITE LIGHT - COLD LIGHT - OFF
 long presses alternate between increasing and decreasing light intensity
 

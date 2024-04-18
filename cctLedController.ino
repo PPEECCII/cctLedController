@@ -1,10 +1,11 @@
 #include <math.h>
-#define TOUCHED_MAX_VALUE 70 //Capacitive touch max touched value
 
-#define TOUCH_PIN 4 //GPIO touch pin number
+#define TOUCHED_MAX_VALUE 15 //Capacitive touch max touched value
 
-#define COLD_LIGHT 32 //Cold light control pin
-#define WARM_LIGHT 33 //Warm light control pin
+#define TOUCH_PIN 14 //GPIO touch pin number
+
+#define COLD_LIGHT 12 //Cold light control pin
+#define WARM_LIGHT 13 //Warm light control pin
 
 #define TOUCH_DURATION 300 //Looping delay time
 
@@ -31,6 +32,7 @@ void setup() {
   Serial.begin(115200);
   delay(1000); // give me time to bring up serial monitor
   Serial.println("ESP32 Touch Test");
+  pinMode(TOUCH_PIN, INPUT);
 
   maxValue = pow(2.0, RESOLUTION) - 1;
   analogWriteResolution(RESOLUTION);
@@ -38,7 +40,7 @@ void setup() {
 }
 
 void loop() {
-  boolean touched = touchRead(TOUCH_PIN) < TOUCHED_MAX_VALUE;
+  boolean touched = digitalRead(TOUCH_PIN) == HIGH;
   if(touched) {
     if(++count >= LONG_TOUCH_DURATION) handleLongPress(count - LONG_TOUCH_DURATION);
   } else {
